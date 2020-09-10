@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minInsertions(string str) {
+        int n=str.length();
+        
+        int table[n][n], l, h, gap;  
+  
+   
+    memset(table, 0, sizeof(table));  
+  
+    // Fill the table  
+    for (gap = 1; gap < n; ++gap)  
+        for (l = 0, h = gap; h < n; ++l, ++h)  
+            table[l][h] = (str[l] == str[h])?  
+                        table[l + 1][h - 1] :  
+                        (min(table[l][h - 1],  
+                             table[l + 1][h]) + 1);  
+  
+  
+    return table[0][n - 1];  
+        
+        
+        
+        
+    }
+};
